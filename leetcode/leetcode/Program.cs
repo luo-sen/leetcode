@@ -10,15 +10,19 @@ namespace leetcode
             
         }
 
-        public static bool TwoSum(int[] nums, int sum)
+
+        // check if array contains 2 numbers that can be sum to sum.
+        // return results indexes
+        public static int[] TwoSum(int[] nums, int sum)
         {
-            HashSet<int> dic = new HashSet<int>();
-            foreach (int num in nums)
+            var dic = new Dictionary<int, int>();
+            for (int i=0;i<nums.Length;i++)
             {
-                if (dic.Contains(sum - num)) return true;
-                else dic.Add(num);
+                int comp = sum - nums[i];
+                if (dic.ContainsKey(comp)) return new int[] { i, dic[comp] };
+                else if(!dic.ContainsKey(nums[i]))dic.Add(nums[i], i);
             }
-            return false;
+            throw new Exception();
 
         }
     }
